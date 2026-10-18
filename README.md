@@ -26,6 +26,7 @@ npx firebase deploy
 
 - Navbar.vue: Component que gestiona la barra de navegació superior. Utilitza RouterLink per permetre el desplaçament entre vistes sense recarregar la pàgina.
 - LlibreCard.vue: Component visual encarregat de mostrar la informació d'un llibre individualitzat en format de targeta.
+- Footer.vue: Component encarregat del peu de pàgina informatiu i institucional de l'aplicació.
 
 ---
 
@@ -33,7 +34,7 @@ npx firebase deploy
 
 - Component Pare: LlibresView.vue (consulta Firestore i obté el llistat complet de llibres).
 - Component Fill: LlibreCard.vue (rep les dades d'un llibre concret i les mostra en pantalla).
-- Dades passades (props): S'envia l'objecte :llibre="llibre", el qual conté els atributs de títol, autor i any.
+- Dades passades (props): S'envien l'objecte :llibre="item" i la posició :index="index", els quals contenen els atributs de títol, autor i any.
 
 ---
 
@@ -53,6 +54,17 @@ npx firebase deploy
   - autor (cadena de text)
   - any (número)
 - Vista encarregada de mostrar les dades: LlibresView.vue (mitjançant el component fill LlibreCard.vue).
+- Gestió d'estats de la petició:
+  - Càrrega (carregant): Mostra un indicador animat i missatge d'espera mentre es recuperen les dades.
+  - Llista buida (llibres.length === 0): Mostra un avís si la col·lecció no té registres.
+  - Error (error): Captura i mostra un missatge si falla la connexió amb Firestore.
+- Regles de seguretat: Definides al fitxer firestore.rules (lectura pública allow read: if true;, escriptura denegada allow write: if false;).
+
+---
+
+## Gestió del repositori (.gitignore)
+
+El projecte disposa d'un fitxer .gitignore configurat per excloure dependències (node_modules/), fitxers de construcció (dist/) i fitxers d'entorn amb credencials privades (.env).
 
 ---
 
